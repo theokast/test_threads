@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>test_threads</name>
+  <version>0.1.0</version>
+  <description>The test_threads package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="tkastrit@ece.auth.gr">Theodora Kastritsi</maintainer>
+
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+  <!--   <doc_depend>doxygen</doc_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>autharl_core</build_depend>
+  <build_depend>lwr_robot</build_depend>
+  <build_depend>bhand_robot</build_depend>
+  <build_depend>autharl_ati_sensor</build_depend>
+  <build_depend>bhand_controllers</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>autharl_core</exec_depend>
+  <exec_depend>lwr_robot</exec_depend>
+  <exec_depend>bhand_robot</exec_depend>
+  <exec_depend>bhand_controllers</exec_depend>
+  <exec_depend>autharl_ati_sensor</exec_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

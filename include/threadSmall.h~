@@ -1,0 +1,8 @@
+
+
+namespace testThreads{
+threadSmall::threadSmall(ros::NodeHandle nh, double sleep_ms)
+threadSmall::~threadSmall(){}
+void threadSmall::update(){}
+ }
+
