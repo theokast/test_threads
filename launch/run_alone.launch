@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find autharl_description)/launch/urdf.launch"/>
+  <node name="test_threads_node" pkg="test_threads" type="node" output="screen">
+  </node>
+</launch>
