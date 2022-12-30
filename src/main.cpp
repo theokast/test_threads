@@ -6,7 +6,6 @@
 #include <boost/shared_ptr.hpp>
 #include <threadSmall.h>
 #include <threadLarge.h>
-
 #include <sched.h>
 
 pcl::PointCloud<pcl::PointXYZ>::Ptr cloud2(new pcl::PointCloud<pcl::PointXYZ>);
@@ -17,20 +16,48 @@ void pointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr& msg)
   pcl::PCLPointCloud2 pcl_pc2;
   pcl_conversions::toPCL(*msg, pcl_pc2);
   pcl::fromPCLPointCloud2(pcl_pc2, *cloud2);
+  Eigen::Vector3d tool_point_;
+	std::vector<Eigen::Vector3d> Near_points_temp;
+  double N =cloud2->size();
+  Near_points_temp.resize(N);
+  Eigen::Vector3d temp_;
+ int j=0;
+  for (int i=0 ; i<N;i++){
+    temp_<< cloud2->points[i].x,  cloud2->points[i].y, cloud2->points[i].z;
+             if ((temp_-tool_point_).norm()>1){
 
-  kdtree.setInputCloud(cloud2);
+             }
+             else{
+               Near_points_temp.at(j)=temp_;
+               j=j+1;
+             }
+
+  }
+
+
+
+  if(j>0){
+    std::vector<Eigen::Vector3d> Near_points;
+    Near_points.resize(j);
+    std::copy(Near_points_temp.cbegin(), Near_points_temp.cbegin()+j, Near_points.begin());
+
+
+  }
+
+  //kdtree.setInputCloud(cloud2);
 
   std::cout<<"calll2"<<std::endl;
+  std::cout<<"j="<<j<<std::endl;
 
- std::this_thread::sleep_for(std::chrono::milliseconds(3));
- std::vector<int> myvector;
-for(int i=0; i<10000;i++){
-  myvector.push_back(i);
-}
+ //std::this_thread::sleep_for(std::chrono::milliseconds(3));
+ //std::vector<int> myvector;
+//for(int i=0; i<10000;i++){
+//  myvector.push_back(i);
+//}
 auto t_end= std::chrono::high_resolution_clock::now();
 
 double duration2=std::chrono::duration<double,std::milli>(t_end-t_start).count();
-//std::cout <<"Call Wall clock time passed: "    << duration2 << " ms\n"<<std::endl;
+std::cout <<"Call Wall clock time passed: "    << duration2 << " ms\n"<<std::endl;
 }
 
 
@@ -109,11 +136,13 @@ std::cout<<"ddsd"<<std::endl;
 	//   std::cout << "threadL ID associted with thread2= "<< t2_id << std::endl;
 
 
-ros::MultiThreadedSpinner spinner(6);
-spinner.spin();
+// ros::MultiThreadedSpinner spinner(6);
+// spinner.spin();
+	// ros::waitForShutdown();
+  ros::spin();
 	threadS.join();
 //	threadL.join();
 
-	ros::waitForShutdown();
+
 	return 0;
 }
